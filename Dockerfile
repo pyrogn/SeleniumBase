@@ -1,6 +1,9 @@
 # SeleniumBase Docker Image
 FROM ubuntu:22.04
 
+ENV DEBIAN_FRONTEND=noninteractive
+ENV TZ=Etc/UTC
+
 #============================
 # Install Linux Dependencies
 #============================
@@ -25,7 +28,9 @@ RUN apt-get update && apt-get install -y \
     libxrandr2 \
     libu2f-udev \
     libvulkan1 \
-    xdg-utils
+    xdg-utils \
+    python3-tk \
+    python3-dev
 
 #=================================
 # Install Bash Command Line Tools
@@ -99,7 +104,6 @@ RUN seleniumbase get chromedriver --path
 # Create entrypoint and grab example tests
 #==========================================
 COPY integrations/docker/docker-entrypoint.sh /
-COPY integrations/docker/run_docker_test_in_chrome.sh /
 RUN chmod +x *.sh
 ENTRYPOINT ["/docker-entrypoint.sh"]
 CMD ["/bin/bash"]

@@ -58,9 +58,9 @@ RUN apt-get update -y
 RUN apt-get install -y python3 python3-pip python3-setuptools python3-dev
 RUN alias python=python3
 RUN echo "alias python=python3" >> ~/.bashrc
-RUN apt-get -qy --no-install-recommends install python3.10
+RUN apt-get -qy --no-install-recommends install python3.11
 RUN rm /usr/bin/python3
-RUN ln -s python3.10 /usr/bin/python3
+RUN ln -s python3.11 /usr/bin/python3
 
 #=============================================
 # Allow Special Characters in Python Programs
